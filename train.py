@@ -10,7 +10,7 @@ import os
 checkpoint_path = "/content/drive/MyDrive/rq2_thesis/bert-hindi-part-5gb-validation-loss/checkpoint-45000"
 model = BertForMaskedLM.from_pretrained(checkpoint_path)
 
-# 📦 Step 1: Split data (assuming train_dataset is already loaded)
+
 train_size = 0.9
 split = train_dataset.train_test_split(train_size=train_size)
 train_dataset_split = split['train']
@@ -25,7 +25,7 @@ data_collator = DataCollatorForLanguageModeling(
 
 training_args = TrainingArguments(
     output_dir="/content/drive/MyDrive/rq2_thesis/bert-hindi-part-5gb-validation-loss",
-    overwrite_output_dir=False,  # ✅ Important: Don't overwrite to allow resuming
+    overwrite_output_dir=False, 
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     num_train_epochs=1,
@@ -41,7 +41,7 @@ training_args = TrainingArguments(
 
 
 trainer = Trainer(
-    model=model,  # ✅ Set to None; it will be loaded from checkpoint
+    model=model,  
     args=training_args,
     train_dataset=train_dataset_split,
     eval_dataset=eval_dataset_split,
